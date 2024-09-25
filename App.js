@@ -1,5 +1,5 @@
-import { StatusBar, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { StyleSheet } from 'react-native'
+import React, { useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';

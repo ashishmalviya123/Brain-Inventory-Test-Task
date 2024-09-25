@@ -13,7 +13,6 @@ const HEIGHT = Dimensions.get('window').height
 const WIDTH = Dimensions.get('window').width
 
 const Checkout = ({ navigation, ...props }) => {
-    console.log(props?.route?.params?.item?.category);
     const [item, setitem] = useState(props?.route?.params?.item)
     const [quantity, setQuantity] = useState(1)
     const decrementCount = (id) => {
@@ -35,17 +34,17 @@ const Checkout = ({ navigation, ...props }) => {
     }
 
     return (
-        <View style={{ flex: 1, backgroundColor: '#fff' }}>
-            <View style={{ backgroundColor:color.base, padding: '4%', alignSelf: 'center', width: "100%", borderBottomLeftRadius: 18, borderBottomRightRadius: 18 }}>
-                <TouchableOpacity onPress={() => navigation.goBack()} style={{ zIndex: 1, position: 'absolute', top: 0, margin: 12, bottom: 0, justifyContent: 'center', alignContent: 'center', alignItems: 'center' }}>
+        <View style={styles.mainContainer}>
+            <View style={styles.headerContainer}>
+                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.headerBackArrow}>
                     <AntDesign name='leftcircle' size={26} color={'#ffff'} />
                 </TouchableOpacity>
-                <Text style={{ color: "#fff", fontSize: 16, bottom: 3, textTransform: 'capitalize', fontWeight: "600", textAlign: 'center', }} >Detail</Text>
+                <Text style={styles.headerMiddleTxt} >Detail</Text>
             </View>
             <View>
-                <View style={{ backgroundColor: '#fff', elevation: 12, borderRadius: 12, padding: 12, margin: 12, width: '95%', alignSelf: 'center' }}>
+                <View style={styles.cardContainer}>
                     <View style={{ gap: 12 }}>
-                        <View style={{ justifyContent: 'center', alignSelf: 'center' }}>
+                        <View style={styles.imageConatiner}>
                             {item.category == 'smartphones' ? <Image source={require('../../Assets/Images/mobile.jpeg')} style={{ width: WIDTH / 4, height: HEIGHT / 5, }} />
                                 : <Image source={require('../../Assets/Images/laptop.jpeg')} style={{ width: WIDTH / 2, resizeMode: 'contain', height: HEIGHT / 6, }} />}
                         </View>
@@ -72,22 +71,22 @@ const Checkout = ({ navigation, ...props }) => {
                                         <Text style={{ color: '#000', textAlign: 'center', fontWeight: '700', paddingHorizontal: 6 }}>+</Text>
                                     </TouchableOpacity>
                                 </View>
-                                <View style={{ position: 'absolute', right: 0, top: 15, alignSelf: 'center' }}>
+                                <View style={styles.TotalAmountContainer}>
                                     <Text>Total {quantity <= 1 ? props?.route?.params?.item?.price : props?.route?.params?.item?.price * quantity}/-</Text>
                                 </View>
                             </View>
                         </View>
                     </View>
 
-                    <View style={{ backgroundColor: 'green', position: 'absolute', top: 0, padding: 8, borderBottomRightRadius: 16 }}>
+                    <View style={styles.discountConatiner}>
                         <Text style={{ fontSize: 14, color: '#fff', fontWeight: '900' }}>{item.discountPercentage}% Off</Text>
                     </View>
                 </View>
             </View>
-            <TouchableOpacity onPress={() => confirmation()} style={{ width: '90%', alignSelf: 'center', position: 'absolute', bottom: '5%', borderRadius: 16, backgroundColor: color.yellow, padding: 12, marginTop: 12 }}>
+            <TouchableOpacity onPress={() => confirmation()} style={styles.FooterBtn}>
                 <Text style={{ color: '#000', textAlign: 'center', fontWeight: '700', paddingHorizontal: 6 }}>Buy Now (COD)</Text>
             </TouchableOpacity>
-            <Text style={{ color: '#000', textAlign: 'center', position: 'absolute', bottom: 0, right: 0, left: 0, bottom: 12 }}>Terms and conditions apply</Text>
+            <Text style={styles.terms}>Terms and conditions apply</Text>
         </View>
     )
 }
@@ -95,6 +94,16 @@ const Checkout = ({ navigation, ...props }) => {
 export default Checkout
 
 const styles = StyleSheet.create({
+    mainContainer: { flex: 1, backgroundColor: '#fff' },
+    headerContainer: { backgroundColor: color.base, padding: '4%', alignSelf: 'center', width: "100%", borderBottomLeftRadius: 18, borderBottomRightRadius: 18 },
+    headerBackArrow: { zIndex: 1, position: 'absolute', top: 0, margin: 12, bottom: 0, justifyContent: 'center', alignContent: 'center', alignItems: 'center' },
+    headerMiddleTxt: { color: "#fff", fontSize: 16, bottom: 3, textTransform: 'capitalize', fontWeight: "600", textAlign: 'center', },
+    cardContainer: { backgroundColor: '#fff', elevation: 12, borderRadius: 12, padding: 12, margin: 12, width: '95%', alignSelf: 'center' },
+    imageConatiner: { justifyContent: 'center', alignSelf: 'center' },
+    TotalAmountContainer: { position: 'absolute', right: 0, top: 15, alignSelf: 'center' },
+    FooterBtn: { width: '90%', alignSelf: 'center', position: 'absolute', bottom: '5%', borderRadius: 16, backgroundColor: color.yellow, padding: 12, marginTop: 12 },
+    terms: { color: '#000', textAlign: 'center', position: 'absolute', bottom: 0, right: 0, left: 0, bottom: 12 },
+    discountConatiner: { backgroundColor: 'green', position: 'absolute', top: 0, padding: 8, borderBottomRightRadius: 16 },
     title: { color: '#000', fontWeight: '800', textTransform: 'capitalize' },
     centeredView: { backgroundColor: 'red', position: 'absolute', bottom: 0 }
 
