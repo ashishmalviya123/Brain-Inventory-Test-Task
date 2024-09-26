@@ -59,9 +59,9 @@ const Checkout = ({ navigation, ...props }) => {
                                 <Rating ratings={item.rating} />
                             </View>
                             <View style={{ flexDirection: 'row', gap: 12 }}>
-                                <TouchableOpacity onPress={() => dispatch(removeFromCart(item.id))} style={{ borderRadius: 6, marginTop: 12 }}>
+                                <View style={{ borderRadius: 6, marginTop: 12 }}>
                                     <Text style={{ color: '#000', textAlign: 'center', fontWeight: '700', }}>Quantity : </Text>
-                                </TouchableOpacity>
+                                </View>
                                 <View style={{ flexDirection: 'row', gap: 6, justifyContent: 'center', alignSelf: 'center' }}>
                                     <TouchableOpacity onPress={() => decrementCount(item.id)} style={{ borderRadius: 6, backgroundColor: color.yellow, marginTop: 12 }}>
                                         <Text style={{ color: '#000', alignSelf: 'center', fontWeight: '700', paddingHorizontal: 8, top: 2 }}>-</Text>
